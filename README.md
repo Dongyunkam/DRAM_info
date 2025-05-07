@@ -20,3 +20,10 @@ HBM uses 3D-stacked DRAM dies connected via Through-Silicon Vias (TSVs) and plac
 
 ### 1.5 GDDR (Graphics DDR)
 GDDR is a high-speed DRAM variant tailored for graphics and parallel processing workloads. It offers high bandwidth and operates at higher clock rates compared to standard DDR. GDDR is widely used in GPUs, gaming consoles, and deep learning inference systems, with GDDR6 and GDDR6X being the most recent generations.
+
+
+## 2. Collections for DRAM access info
+
+| Link | Name | Accelerator type | DRAM category | DRAM read energy | DRAM write energy | DRAM bandwidth | DRAM source |
+| --- | --- | --- | --- | --- | --- | --- |
+| [ISSCC'25](https://ieeexplore.ieee.org/document/10904793) | T-REX | ASIC/Sim | LPDDR3 SDRAM | 3.7pJ/b (per pin) | ? | 6.4GB/s | [ISSCC'12](https://ieeexplore.ieee.org/document/6176871) |
