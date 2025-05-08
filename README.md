@@ -21,10 +21,47 @@ HBM uses 3D-stacked DRAM dies connected via Through-Silicon Vias (TSVs) and plac
 ### 1.5 GDDR (Graphics DDR)
 GDDR is a high-speed DRAM variant tailored for graphics and parallel processing workloads. It offers high bandwidth and operates at higher clock rates compared to standard DDR. GDDR is widely used in GPUs, gaming consoles, and deep learning inference systems, with GDDR6 and GDDR6X being the most recent generations.
 
+## 2. Basic Operations at the cell-level
+There are two operations that are common to every DRAM: data access and refresh. The two operations self explains the name DRAM (Dynamic Random Access Memory) and enables DRAM to function as a reliable memory. (The [reference](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf) is a good paper to understand DRAM operations.)
 
-## 2. Collections for DRAM access info
+### 2.1 Data Access
+Once the bit-line sense amplifier (BLSA) is completely precharged, a sequence of three commands, namely activate, read/write and precharge, can be issued to access data stored on the cell.
+
+### 2.2 Refresh
+The charge stored on the DRAM cell leaks over time and the data stored on the cell will eventually flip bit if the cell continues to leak charge. Hence, it is important to periodically read the value stored on the cell and write the restore value back to the cell for DRAM to function as a reliable memory. This requirement is the reason why DRAM is classified as Dynamic RAM and the overall operation to fulfill such requirements is called Refresh.
+To refresh the cells, only the functionality of activate and precharge commands are needed.
+there are two different types of refresh modes. The first and the default type is auto-refresh, where the memory controller issues refresh commands periodically to indicate when the refresh should occur while the DRAM determines the rows to refresh.
+Another type of refresh is self-refresh, which refreshes data when the DRAM is in a low power sleep mode. In this mode, refreshes are issued automatically by the DRAM without any additional command issued from the memory controller.
+
+### 2.3 Data Transfer
+Modern DRAM uses Double Data Rate (DDR) protocol to exchange data between the DRAM and the memory controller.
+**page size** is the data fetched to the bitline sense amplifier or the number of cells connected to a selected row by the activate command.
+**Peak bandwidth** is calculated by a multiplication of data rate (per pin) and total pins.
+**Bank grouping** makes a coupe of banks as a group, physically separating IO wires and allowing data to be sent independently.
+**Channel** is a path to communicate between memory device and memory controller (global IO wire?), where an independent channel requires an independent memory controller.
+
+### 2.4 Power consumption
+We can break DRAM power into four categories; background, row, column, and refresh.
+The background power is mostly leakage and depends on how many banks are activated and whether the device is in a special power-down mode.
+The other three power categories are the dynamic power dissipated to perform the specific DRAM operations. Row power relates to activate and precharge commands, Column is the power spent to read and write data in and out of the DRAM, and
+Refresh power is dissipated whenever periodic refresh is issued.
+
+## 3. DRAM Design
+### 3.1 Structural Organization
+The cells are then densely packed with each other, forming a 2D-matrix of cells called a MAT.
+The tight pitch of the cells leads to high resistance, which limits the size of a MAT (A typical configuration of MAT has 512 wordlines and 512 bitlines storing a total of 256 K bits).
+Today’s Gb-scale DRAM contains thousands of MATs, where around 16 MATs are grouped into a sub-array and sub-arrays are then stacked on top of each other to form a sub-bank and depending on the size of the DRAM one or more sub-banks combine to form a bank.
+Similar to the MAT, the bank also has a set of peripheral circuits labeled row and column decoder to select a group of cells and transfer data into or out of these selected cells.
+A chip has multiple banks to provide the bank-level parallelism crucial to high performance DRAM and additional periphery circuit that contains pads or TSVs to communicate with the system.
+The memory module used in modern computer systems is simply a collection of multiple DRAM chips with 64 bits of I/O per rank for the DDR4 DRAM.
+
+### 3.2 Core Design
+
+## 4. Collections for DRAM access info
 
 | Link | Paper name | Accelerator type | DRAM category | DRAM read energy | DRAM write energy | DRAM bandwidth | DRAM info source |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [ISSCC'25](https://ieeexplore.ieee.org/document/10904793) | T-REX | ASIC/Sim | LPDDR3 SDRAM | 3.7pJ/b (per pin) | ? | 6.4GB/s | [ISSCC'12](https://ieeexplore.ieee.org/document/6176871) |
 | [NVIDA docs](https://research.nvidia.com/sites/default/files/pubs/2017-10_Fine-Grained-DRAM%3A-Energy-Efficient/oconnor_and_chatterjee.micro2017.pdf) | FGDRAM | ASIC | HBM/DDR | 14.0pj/bit | ? | 536GB/s | Figure1: bandwidth vs energy trade-off |
+| [Stanford Thesis](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf) | 32Gb LPDDR4 | ASIC | HBM/DDR | 14.0pj/bit | ? | 536GB/s | Figure1: bandwidth vs energy trade-off |
+| [MICRO'10](https://ieeexplore.ieee.org/document/5695550) | 32Gb LPDDR4 | ASIC | HBM/DDR | 14.0pj/bit | ? | 536GB/s | Figure1: bandwidth vs energy trade-off |
