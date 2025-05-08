@@ -35,9 +35,13 @@ Another type of refresh is self-refresh, which refreshes data when the DRAM is i
 
 ### 2.3 Data Transfer
 Modern DRAM uses Double Data Rate (DDR) protocol to exchange data between the DRAM and the memory controller.
+
 **page size** is the data fetched to the bitline sense amplifier or the number of cells connected to a selected row by the activate command.
+
 **Peak bandwidth** is calculated by a multiplication of data rate (per pin) and total pins.
+
 **Bank grouping** makes a coupe of banks as a group, physically separating IO wires and allowing data to be sent independently.
+
 **Channel** is a path to communicate between memory device and memory controller (global IO wire?), where an independent channel requires an independent memory controller.
 
 ### 2.4 Power consumption
