@@ -89,14 +89,14 @@ make
 
 The simulation results are reported in cache.cfg.out.
 
-## 5.2 Papers
+### 5.2 Papers
 
-### 5.0 Fundamentals
+#### 5.2.0 Fundamentals
 
 1. [ISSCC '14] [Computing's Energy Problem](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6757323): This paper presents the DRAM access energy as about 10pJ/b if the DRAM access I/O is improved.
 
 
-### 5.1 CACTI
+#### 5.2.1 CACTI
 
 1. [ISCA '18] [Bitfusion](https://github.com/hsharma35/bitfusion): This uses CACTI for on-chip buffers (SRAM).
 
@@ -116,16 +116,24 @@ The simulation results are reported in cache.cfg.out.
 
 9. [ISCA '24] Trapezoid (no Github): This work uses CACTI for SRAM and RAMBUS report for HBM (HBM3E 768GB/s).
 
+10. [MICRO '] [Timeloop + Accelergy](https://github.com/Accelergy-Project/accelergy-timeloop-infrastructure)
 
-### 5.2 DRAMsim
+
+#### 5.2.2 DRAMsim
 1. [ASPLOS '24] [NeuPIM](https://github.com/casys-kaist/NeuPIMs): This work uses Micron's report as well.
 
+2. [HPCA '25] [BitMod](https://github.com/abdelfattah-lab/BitMoD-HPCA-25/tree/main/bitmod_sim/mem): This work uses CACTI for on-chip buffer (SRAM) and DRAMsim for DRAM power.
 
-### 5.3 USIMM
+3. [HPCA '25] [Prosperity](https://github.com/dubcyfor3/Prosperity): This work uses CACTI for on-chip buffer (SRAM) and DRAMsim for DRAM power.
+
+
+
+#### 5.2.3 USIMM
 1. [ISCA '22] Hydra (no github): This work uses CACTI for SRAM and USIMM for DRAM.
 
 
-### 5.4 Ramulator/DRAMpower
+
+#### 5.2.4 Ramulator/DRAMpower
 1. [HPCA '24] [CoMeT](https://github.com/CMU-SAFARI/CoMeT)
 
 2. [MICRO '21] ESCALATE (no github): This work uses CACTI for SRAM and DRAMpower/ramulator for DRAM.
@@ -133,6 +141,9 @@ The simulation results are reported in cache.cfg.out.
 3. [HPCA '24] MEGA (no github): This work uses the HyGCN's methodology.
 
 4. [HPCA '20] HyGCN (no github): This work uses CACTI for SRAM, Ramulator for HBM simulation, 7 pJ/b for HBM access energy. 
+
+5. [ArXiv '25] [SCALE-Sim v3](https://github.com/scalesim-project/scale-sim-v3): This work uses Ramulator for DRAM behavior and energy.
+
 
 
 ### 5.3 My simulation results
