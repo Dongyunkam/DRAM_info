@@ -74,14 +74,67 @@ The memory module used in modern computer systems is simply a collection of mult
 | [MICRO'10](https://ieeexplore.ieee.org/document/5695550) | 2G DDR3 | simulation | simulation (65nm)  | 9.0bJ/bit | ? | 2.6GB/s | IDD7RW |
 | [MICRO'10](https://ieeexplore.ieee.org/document/5695550) | 8G DDR4 | simulation | expected (45nm)  | 4.5bJ/bit | ? | 6.2GB/s | IDD7RW |
 
-## 5. My simulation results
+## 5. DRAM/SRAM Simulators
 
-### 5.1 Cacti simulation
+### 5.1 Reference
  CACTI has analytical models for all the basic building blocks of a memory: decoder, sense-amplifier, crossbar, on-chip wires, DRAM/SRAM cell, and latch.
  I wrote this section based on the paper ([CACIT version 7.0](https://dl.acm.org/doi/10.1145/3085572)) and the [gitbub](https://github.com/HewlettPackard/cacti).
 
 ```console
+git clone https://github.com/HewlettPackard/cacti
 cd cacti
 make
 ./cacti -infile cache.cfg
 ```
+
+The simulation results are reported in cache.cfg.out.
+
+## 5.2 Papers
+
+### 5.0 Fundamentals
+
+1. [ISSCC '14] [Computing's Energy Problem](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6757323): This paper presents the DRAM access energy as about 10pJ/b if the DRAM access I/O is improved.
+
+
+### 5.1 CACTI
+
+1. [ISCA '18] [Bitfusion](https://github.com/hsharma35/bitfusion): This uses CACTI for on-chip buffers (SRAM).
+
+2. [MICRO '22] [ANT](https://github.com/clevercool/ANT-Quantization): This uses the same thing as Bitfusion.
+
+3. [TCOM '21] [ZigZag](https://github.com/KULeuven-MICAS/zigzag): This uses CACTI for all memory access energies.
+
+4. [HPCA '24] [Spark](https://ieeexplore.ieee.org/abstract/document/10476472)
+
+5. [ASPLOS '20] [Interstellar](https://github.com/xuanyoya/Interstellar-CNN-scheduler): This work provides energy table, and this work uses CACTI for SRAM.
+
+6. [ISCA '23] [SPADE](https://dl.acm.org/doi/pdf/10.1145/3579371.3589054): This work uses CACTI for SRAM (L2).
+
+7. [TACO '22] [SCNN](https://dl.acm.org/doi/full/10.1145/3532863): This work uses CACTI for SRAM/DRAM.
+
+8. [TCASAI '25] EvGNN (no Github): This work uses CACTI for SRAM/DRAM.
+
+9. [ISCA '24] Trapezoid (no Github): This work uses CACTI for SRAM and RAMBUS report for HBM (HBM3E 768GB/s).
+
+
+### 5.2 DRAMsim
+1. [ASPLOS '24] [NeuPIM](https://github.com/casys-kaist/NeuPIMs): This work uses Micron's report as well.
+
+
+### 5.3 USIMM
+1. [ISCA '22] Hydra (no github): This work uses CACTI for SRAM and USIMM for DRAM.
+
+
+### 5.4 Ramulator/DRAMpower
+1. [HPCA '24] [CoMeT](https://github.com/CMU-SAFARI/CoMeT)
+
+2. [MICRO '21] ESCALATE (no github): This work uses CACTI for SRAM and DRAMpower/ramulator for DRAM.
+
+3. [HPCA '24] MEGA (no github): This work uses the HyGCN's methodology.
+
+4. [HPCA '20] HyGCN (no github): This work uses CACTI for SRAM, Ramulator for HBM simulation, 7 pJ/b for HBM access energy. 
+
+
+### 5.3 My simulation results
+
+|
