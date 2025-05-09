@@ -36,7 +36,8 @@ Another type of refresh is self-refresh, which refreshes data when the DRAM is i
 ### 2.3 Data Transfer
 Modern DRAM uses Double Data Rate (DDR) protocol to exchange data between the DRAM and the memory controller.
 
-**page size** is the data fetched to the bitline sense amplifier or the number of cells connected to a selected row by the activate command.
+**page size** is the data fetched to the bitline sense amplifier or the number of cells connected to a selected row by the activate command. (1KB or 2KB)
+Page size also denotes the number of sense amp required for supporting one wordline.
 
 **Peak bandwidth** is calculated by a multiplication of data rate (per pin) and total pins.
 
@@ -60,6 +61,7 @@ A chip has multiple banks to provide the bank-level parallelism crucial to high 
 The memory module used in modern computer systems is simply a collection of multiple DRAM chips with 64 bits of I/O per rank for the DDR4 DRAM.
 
 ### 3.2 Core Design
+...
 
 ## 4. Collections for DRAM access info
 
@@ -67,5 +69,19 @@ The memory module used in modern computer systems is simply a collection of mult
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [ISSCC'25](https://ieeexplore.ieee.org/document/10904793) | T-REX | ASIC/Sim | LPDDR3 SDRAM | 3.7pJ/b (per pin) | ? | 6.4GB/s | [ISSCC'12](https://ieeexplore.ieee.org/document/6176871) |
 | [NVIDA docs](https://research.nvidia.com/sites/default/files/pubs/2017-10_Fine-Grained-DRAM%3A-Energy-Efficient/oconnor_and_chatterjee.micro2017.pdf) | FGDRAM | ASIC | HBM/DDR | 14.0pj/bit | ? | 536GB/s | Figure1: bandwidth vs energy trade-off |
-| [Stanford Thesis](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf) | 32Gb LPDDR4 | ASIC | HBM/DDR | 14.0pj/bit | ? | 536GB/s | Figure1: bandwidth vs energy trade-off |
-| [MICRO'10](https://ieeexplore.ieee.org/document/5695550) | 32Gb LPDDR4 | ASIC | HBM/DDR | 14.0pj/bit | ? | 536GB/s | Figure1: bandwidth vs energy trade-off |
+| [Stanford Thesis](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf) | 32Gb LPDDR4 (SDP) | simulation | LPDDR4 | 14.0pj/bit | ? | 3.2Gbps/pin | DramDSE (simulation) |
+| [Stanford Thesis](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf) | 4x8Gb LPDDR4 (QDP) | simulation | LPDDR4 | 13.0pj/bit | ? | 3.2Gbps/pin | DramDSE (simulation) |
+| [MICRO'10](https://ieeexplore.ieee.org/document/5695550) | 2G DDR3 | simulation | simulation (65nm)  | 9.0bJ/bit | ? | 2.6GB/s | IDD7RW |
+| [MICRO'10](https://ieeexplore.ieee.org/document/5695550) | 8G DDR4 | simulation | expected (45nm)  | 4.5bJ/bit | ? | 6.2GB/s | IDD7RW |
+
+## 5. My simulation results
+
+### 5.1 Cacti simulation
+ CACTI has analytical models for all the basic building blocks of a memory: decoder, sense-amplifier, crossbar, on-chip wires, DRAM/SRAM cell, and latch.
+ I wrote this section based on the paper ([CACIT version 7.0](https://dl.acm.org/doi/10.1145/3085572)) and the [gitbub](https://github.com/HewlettPackard/cacti).
+
+```console
+cd cacti
+make
+./cacti -infile cache.cfg
+```
