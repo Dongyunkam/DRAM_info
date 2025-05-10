@@ -76,27 +76,14 @@ The memory module used in modern computer systems is simply a collection of mult
 
 ## 5. DRAM/SRAM Simulators
 
-### 5.1 Reference
- CACTI has analytical models for all the basic building blocks of a memory: decoder, sense-amplifier, crossbar, on-chip wires, DRAM/SRAM cell, and latch.
- I wrote this section based on the paper ([CACIT version 7.0](https://dl.acm.org/doi/10.1145/3085572)) and the [gitbub](https://github.com/HewlettPackard/cacti).
+### 5.1 Papers
 
-```console
-git clone https://github.com/HewlettPackard/cacti
-cd cacti
-make
-./cacti -infile cache.cfg
-```
-
-The simulation results are reported in cache.cfg.out.
-
-### 5.2 Papers
-
-#### 5.2.0 Fundamentals
+#### 5.1.0 Fundamentals
 
 1. [ISSCC '14] [Computing's Energy Problem](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6757323): This paper presents the DRAM access energy as about 10pJ/b if the DRAM access I/O is improved.
 
 
-#### 5.2.1 CACTI
+#### 5.1.1 CACTI
 
 1. [ISCA '18] [Bitfusion](https://github.com/hsharma35/bitfusion): This uses CACTI for on-chip buffers (SRAM).
 
@@ -119,7 +106,7 @@ The simulation results are reported in cache.cfg.out.
 10. [MICRO '] [Timeloop + Accelergy](https://github.com/Accelergy-Project/accelergy-timeloop-infrastructure)
 
 
-#### 5.2.2 DRAMsim
+#### 5.1.2 DRAMsim
 1. [ASPLOS '24] [NeuPIM](https://github.com/casys-kaist/NeuPIMs): This work uses Micron's report as well.
 
 2. [HPCA '25] [BitMod](https://github.com/abdelfattah-lab/BitMoD-HPCA-25/tree/main/bitmod_sim/mem): This work uses CACTI for on-chip buffer (SRAM) and DRAMsim for DRAM power.
@@ -128,12 +115,12 @@ The simulation results are reported in cache.cfg.out.
 
 
 
-#### 5.2.3 USIMM
+#### 5.1.3 USIMM
 1. [ISCA '22] Hydra (no github): This work uses CACTI for SRAM and USIMM for DRAM.
 
 
 
-#### 5.2.4 Ramulator/DRAMpower
+#### 5.1.4 Ramulator/DRAMpower
 1. [HPCA '24] [CoMeT](https://github.com/CMU-SAFARI/CoMeT)
 
 2. [MICRO '21] ESCALATE (no github): This work uses CACTI for SRAM and DRAMpower/ramulator for DRAM.
@@ -146,6 +133,23 @@ The simulation results are reported in cache.cfg.out.
 
 
 
-### 5.3 My simulation results
+### 5.2 CACTI results
+ CACTI has analytical models for all the basic building blocks of a memory: decoder, sense-amplifier, crossbar, on-chip wires, DRAM/SRAM cell, and latch.
+ I wrote this section based on the paper ([CACIT version 7.0](https://dl.acm.org/doi/10.1145/3085572)) and the [gitbub](https://github.com/HewlettPackard/cacti).
 
-|
+```console
+git clone https://github.com/HewlettPackard/cacti
+cd cacti
+make
+./cacti -infile cache.cfg
+```
+
+The simulation results are reported in cache.cfg.out.
+
+Note that Bitfusion uses 4096b page size.
+
+| Ref | MEM type | DRAM type | Cache type | Cache level | Size (B) | Tech (nm) | Block size (B) | In/Out width (b) | Dynamic read energy (nJ/b) | Dynamic write energy (nJ/b) | Leakage power per bank (mW) | Area (mm^2) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Bitfusion | SRAM | DDR3 | ram | L3 | 512 | 45 | 4 | 32 | 0.0331553125 | 0.0730840625 | 1.03183 | 0.007603 |
+
+### 5.3 DRAMpower results
