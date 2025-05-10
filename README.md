@@ -148,8 +148,11 @@ The simulation results are reported in cache.cfg.out.
 
 Note that Bitfusion uses 4096b page size.
 
-| Ref | MEM type | DRAM type | Cache type | Cache level | Size (B) | Tech (nm) | Block size (B) | In/Out width (b) | Dynamic read energy (nJ/b) | Dynamic write energy (nJ/b) | Leakage power per bank (mW) | Area (mm^2) |
+| Ref | MEM type | DRAM type | Cache type | Cache level | Size (B) | Tech (nm) | Block size (B) | In/Out width (b) | Dynamic read energy (pJ/b) | Dynamic write energy (pJ/b) | Leakage power per bank (mW) | Area (mm^2) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Bitfusion | SRAM | DDR3 | ram | L3 | 512 | 45 | 4 | 32 | 0.0331553125 | 0.0730840625 | 1.03183 | 0.007603 |
-
+| Bitfusion | SRAM | DDR3 | ram | L3 | 128 | 45 | 4 | 32 | 0.021365 | 0.028906 | 0.259873 | 0.00149898 |
+| Bitfusion | SRAM | DDR3 | ram | L3 | 8192 | 28 | 64 | 512 | 0.555275 | 0.77770625 | 5.75335 | 0.0555835 |
+| Bitfusion | SRAM | DDR3 | ram | L3 | 4096 | 28 | 64 | 512 | 0.5278875 | 0.63569375 | 3.11199 | 0.0460667 |
+| Bitfusion | SRAM | DDR3 | ram | L3 | 128 | 28 | 4 | 32 | 0.0092170 | 0.0129976 | 0.136585 | 0.00102563 |
 ### 5.3 DRAMpower results
