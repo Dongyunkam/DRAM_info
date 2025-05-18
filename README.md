@@ -103,7 +103,7 @@ The memory module used in modern computer systems is simply a collection of mult
 
 9. [ISCA '24] Trapezoid (no Github): This work uses CACTI for SRAM and RAMBUS report for HBM (HBM3E 768GB/s).
 
-10. [MICRO '] [Timeloop + Accelergy](https://github.com/Accelergy-Project/accelergy-timeloop-infrastructure)
+10. [MICRO '22] [Timeloop + Accelergy](https://github.com/Accelergy-Project/accelergy-timeloop-infrastructure)
 
 
 #### 5.1.2 DRAMsim
@@ -152,7 +152,20 @@ Note that Bitfusion uses 4096b page size.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Bitfusion | SRAM | DDR3 | ram | L3 | 512 | 45 | 4 | 32 | 0.0331553125 | 0.0730840625 | 1.03183 | 0.007603 |
 | Bitfusion | SRAM | DDR3 | ram | L3 | 128 | 45 | 4 | 32 | 0.021365 | 0.028906 | 0.259873 | 0.00149898 |
-| Bitfusion | SRAM | DDR3 | ram | L3 | 8192 | 28 | 64 | 512 | 0.555275 | 0.77770625 | 5.75335 | 0.0555835 |
-| Bitfusion | SRAM | DDR3 | ram | L3 | 4096 | 28 | 64 | 512 | 0.5278875 | 0.63569375 | 3.11199 | 0.0460667 |
+| Bitfusion | SRAM | DDR3 | ram | L3 | 8192 | 28 | 64 | 512 | 0.0347046 | 0.048606640625 | 5.75335 | 0.0555835 |
+| Bitfusion | SRAM | DDR3 | ram | L3 | 4096 | 28 | 64 | 512 | 0.03299296875 | 0.039730859375 | 3.11199 | 0.0460667 |
 | Bitfusion | SRAM | DDR3 | ram | L3 | 128 | 28 | 4 | 32 | 0.0092170 | 0.0129976 | 0.136585 | 0.00102563 |
+
+Note that CACTI is limited by 1 GB (8Gb) !!!!
+
 ### 5.3 DRAMpower results
+
+| Ref | MEM type | DRAM type | Cache type | Cache level | Size (B) | Tech (nm) | Block size (B) | In/Out width (b) | Dynamic read energy (pJ/b) | Dynamic write energy (pJ/b) | Leakage power per bank (mW) | Area (mm^2) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+### 5.4 Ramulator results
+
+Ramulator is a trace-based DRAM simulator.
+
+| MEM | timing | CLK (ns) | VDD | IDD0 | IDD2N | IDD3N | IDD4R | IDD4W | IDD5B | VPP | VPP | IPP0 | IPP2N | IPP3N | IPP4R | IPP4W | IPP5B | Read pJ/b | Write pJ/b | Act pJ/b | Pre pJ/b | REF pJ/b |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
