@@ -201,9 +201,10 @@ Column Write Delay (CWD) == Column Write Latency (CWL): BUS Delivery time after 
 Refresh Cycle (RFC): Time for performing the refresh command.
 Refresh time Interval (REFI)
 
-Note that I consider "open row for (tRAS-tRCD)" and "only max(tCCD,tBURST) for successive commands" ([ISCA'23](https://dl.acm.org/doi/pdf/10.1145/3579371.3589101), [ISCA'12](https://ieeexplore.ieee.org/document/6237032), and [Blog Post](https://ryotta-205.tistory.com/86)).
+Note that I consider "open row for (tRAS-tRCD)" and "only max(tCCD,tBURST) for stream commands" ([ISCA'23](https://dl.acm.org/doi/pdf/10.1145/3579371.3589101), [ISCA'12](https://ieeexplore.ieee.org/document/6237032), and [Blog Post](https://ryotta-205.tistory.com/86)).
 But, in fact, Ramulator uses four stream column access commands for one active commands.
+Activated cycles are accumulated by total RAS time.
 
-| MEM | Spec | CLK (ns) | nRCD | nCL | nCCD | nRAS | nRP | nRFC | Read (pJ/b) | Write (pJ/b) | Avg. Act (pJ/b) | Avg. Pre (pJ/b) | Avg. REF (pJ/b) | Act Background pJ/cycle | Idle Background pJ/cycle |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| DDR4_8Gb_x8 | 2400R | 0.833 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MEM | Spec | CLK (ns) | nRCD | nCL | nCCD | nRAS | nRP | nRFC | nREFI | Read (pJ/b) | Write (pJ/b) | Avg. Act (pJ/b) | Avg. Pre (pJ/b) | Avg. REF (pJ/b) | Act+Idle Background pJ/b |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| DDR4_8Gb_x8 | 2400R | 0.833 | 16 | 16 | 4 | 39 | 16 | 433 | 9364 | 5.62275 | 5.62275 | 0.75973516 | 0.62475 | 0.619968 | 11.601 |
