@@ -167,5 +167,33 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 Ramulator is a trace-based DRAM simulator.
 
-| MEM | timing | CLK (ns) | VDD | IDD0 | IDD2N | IDD3N | IDD4R | IDD4W | IDD5B | VPP | VPP | IPP0 | IPP2N | IPP3N | IPP4R | IPP4W | IPP5B | Read pJ/b | Write pJ/b | Act pJ/b | Pre pJ/b | REF pJ/b |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access commands.
+
+The Ramulator uses the following current/voltage for DDR4.
+```console
+VDD:    1.2 V
+IDD0:   60 mA
+IDD2N:  50 mA
+IDD3N:  55 mA
+IDD4R:  145 mA
+IDD4W:  145 mA
+IDD5B:  362 mA
+VPP:    2.5 V
+IPP0:   3 mA
+IPP2N:  3 mA
+IPP3N:  3 mA
+IPP4R:  3 mA
+IPP4W:  3 mA
+IPP5B:  48 mA
+```
+Note that each of Read/Write commands takes 4 cycles (nBL) for 8 burst lengths (8b x 8 = 64b access).
+
+<center><img src="./figures/row-access time.png" width="100%" height="100%"></center>
+
+Row Column Delay (RCD): Time for activating row -> sense amplifier after issuing row access command. After tRCD, it is possible to communicate between sense amplifier and memory controller.
+Row Access Strobe (RAS): Time for 
+
+
+| MEM | timing | CLK (ns)  | nBP | nRAS | nRP | nRFC | Read (pJ/b) | Write (pJ/b) | Avg. Act (pJ/b) | Avg. Pre (pJ/b) | Avg. REF (pJ/b) | Act Background pJ/cycle | Idle Background pJ/cycle |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| DDR4_8Gb_x8 | 2400R | 0.833 | 1.2 | 60 | 50 | 55 | 145 | 145 | 362 | 2.5 | 3 | 3 | 3 | 3 | 3 | 48 | 4 | 43 | 18 | 734 | 5.0625| 5.0625 | 1.209375 | 1.0125 | --- | 0.055125 | 0.050625 |
