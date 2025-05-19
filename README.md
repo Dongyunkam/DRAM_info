@@ -206,5 +206,5 @@ But, in fact, Ramulator uses four stream column access commands for one active c
 Activated cycles are accumulated by total RAS time.
 
 | MEM | Spec | CLK (ns) | nRCD | nCL | nCCD | nRAS | nRP | nRFC | nREFI | Read (pJ/b) | Write (pJ/b) | Avg. Act (pJ/b) | Avg. Pre (pJ/b) | Avg. REF (pJ/b) | Act+Idle Background (RD, pJ/b) | Act+Idle Background (WR, pJ/b) |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | DDR4_8Gb_x8 | 2400R | 0.833 | 16 | 16 | 4 | 39 | 16 | 433 | 9364 | 5.62275 | 5.62275 | 0.75973516 | 0.62475 | 0.619968 | 13.798 | 19.777 |
