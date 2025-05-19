@@ -192,7 +192,7 @@ Note that each of Read/Write commands takes 4 cycles (nBL) for 8 burst lengths (
 
 **Row Column Delay (RCD)**: Time for activating row -> sense amplifier after issuing row access command. After tRCD, it is possible to communicate between sense amplifier and memory controller.  
 **Row Access Strobe (RAS)**: Time for requiring prechage command after issuing row access command.  
-**(RP)** 
+**Row Precharge Delay (RP)**: Time interval between precharge and activate.  
 **Write Recovery (WR)**:  
 **Column Access Strobe (CAS) == Column Access Strobe Latency (CL)**: BUS Delivery time after a read command.  
 **Column-to-Column delay (CCD)**: Time for the least interval between read command.  
