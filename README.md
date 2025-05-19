@@ -190,16 +190,16 @@ Note that each of Read/Write commands takes 4 cycles (nBL) for 8 burst lengths (
 
 <center><img src="./figures/row-access time.png" width="100%" height="100%"></center>
 
-Row Column Delay (RCD): Time for activating row -> sense amplifier after issuing row access command. After tRCD, it is possible to communicate between sense amplifier and memory controller.  
-Row Access Strobe (RAS): Time for requiring prechage command after issuing row access command.  
-(RP)  
-Write Recovery (WR):  
-Column Access Strobe (CAS) == Column Access Strobe Latency (CL): BUS Delivery time after a read command.  
-Column-to-Column delay (CCD): Time for the least interval between read command.  
-Burst time (BURST): BUS time for Burst data.  
-Column Write Delay (CWD) == Column Write Latency (CWL): BUS Delivery time after a write command.  
-Refresh Cycle (RFC): Time for performing the refresh command.  
-Refresh time Interval (REFI)  
+**Row Column Delay (RCD)**: Time for activating row -> sense amplifier after issuing row access command. After tRCD, it is possible to communicate between sense amplifier and memory controller.  
+**Row Access Strobe (RAS)**: Time for requiring prechage command after issuing row access command.  
+**(RP)** 
+**Write Recovery (WR)**:  
+**Column Access Strobe (CAS) == Column Access Strobe Latency (CL)**: BUS Delivery time after a read command.  
+**Column-to-Column delay (CCD)**: Time for the least interval between read command.  
+**Burst time (BURST)**: BUS time for Burst data.  
+**Column Write Delay (CWD) == Column Write Latency (CWL)**: BUS Delivery time after a write command.  
+**Refresh Cycle (RFC)**: Time for performing the refresh command.  
+**Refresh time Interval (REFI)**
 
 Note that I consider "open row for (tRAS-tRCD)" and "only max(tCCD,tBURST) for stream commands" ([ISCA'23](https://dl.acm.org/doi/pdf/10.1145/3579371.3589101), [ISCA'12](https://ieeexplore.ieee.org/document/6237032), and [Blog Post](https://ryotta-205.tistory.com/86)).  
 But, in fact, Ramulator uses four stream column access commands for one active commands.  
