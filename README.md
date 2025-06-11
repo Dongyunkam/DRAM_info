@@ -163,7 +163,7 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 MICRON provides EXCEL files to calculate dram power, which is used for the [paper](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf).  
 
-$`\text{ACT_energy_per_cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
+$`ACT_energy_per_cmd = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
 $`\text{PRE_energy_per_cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
 $`\text{READ_energy_per_cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * (nBL/8) * tCK`$  
 $`\text{WRITE_energy_per_cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * (nBL/8) * tCK`$  
