@@ -158,7 +158,25 @@ Note that Bitfusion uses 4096b page size.
 
 Note that CACTI is limited by 1 GB (8Gb) !!!!
 
+
+### 5.x MICRON calculator
+
+MICRON provides EXCEL files to calculate dram power, which is used for the [paper](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf).  
+
+$`\text{ACT_energy_per_cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
+$`\text{PRE_energy_per_cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
+$`\text{READ_energy_per_cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * (nBL/8) * tCK`$  
+$`\text{WRITE_energy_per_cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * (nBL/8) * tCK`$  
+$`\text{REF_energy_per_cmd} = (VDD * (IDD5B-IDD3N)  + VPP * (IPP5B-IPP3N) / tREFI) * tRFC`$  
+$`\text{ACT_BG_powerdown_power} = (VDD * IDD3P + VPP * IPP3N) * tCK`$  
+$`\text{ACT_BG_standby_power} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
+$`\text{IDLE_BG_standby_power} = (VDD * IDD2N + VPP * IPP3N) * tCK`$  
+$`\text{PRE_BG_powerdown_power} = (VDD * IDD2P + VPP * IPP3N) * tCK`$   
+
+
 ### 5.3 DRAMpower results
+
+DRAMpower is a trace-based DRAM simulator, considering both the DRAM core power and the interface power.  
 
 $`I_{rho} = rho * (IDD3N-IDD2N) + IDD2N`$  
 $`I_{\theta} = (IDD0 * (tRP + tRAS) - I_{beta} * tRP) / tRAS`$  
@@ -168,13 +186,13 @@ $`\text{PRE_energy_per_cmd} = VDD * (I_{beta} - IDD2N) * tRP`$
 $`\text{READ_energy_per_cmd} = VDD * (IDD4R-IDD3N) * BurstLength / DateRate * tCK`$  
 $`\text{WRITE_energy_per_cmd} = VDD * (IDD4W-IDD3N) * BurstLength / DateRate * tCK`$  
 $`\text{REF_ab_energy_per_cmd} = VDD * (IDD5B-IDD3N) / nBANK * tRFC`$  
-$`\text{ACT_BG_star_energy_per_cycle} = VDD * I_{rho} * nDevice * tCK`$  
-$`\text{ACT_BG_shared_energy_per_cycle} = VDD * (IDD3Bb-I_{rho}) / B * tCK`$  
+$`\text{ACT_BG_shared_energy_per_cycle} = VDD * I_{rho} * nDevice * tCK`$  
+$`\text{ACT_BG_star_energy_per_cycle} = VDD * (IDD3N-I_{rho}) / B * tCK`$  
 $`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N) / B * tCK`$  
 
-### 5.4 Ramulator results
+### 5.4 Ramulator2 results
 
-Ramulator is a trace-based DRAM simulator.  
+Ramulator is also a trace-based DRAM simulator.  
   
 $`\text{ACT_energy_per_cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
 $`\text{PRE_energy_per_cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
