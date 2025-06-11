@@ -159,7 +159,7 @@ Note that Bitfusion uses 4096b page size.
 Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 
-### 5.x MICRON calculator
+### 5.3 MICRON power calculation
 
 MICRON provides EXCEL files to calculate dram power, which is used for the [paper](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf).  
 
@@ -174,7 +174,7 @@ $`\text{IDLE_BG_standby_power} = (VDD * IDD2N + VPP * IPP3N) * tCK`$
 $`\text{PRE_BG_powerdown_power} = (VDD * IDD2P + VPP * IPP3N) * tCK`$   
 
 
-### 5.3 DRAMpower results
+### 5.4 DRAMpower power calculation
 
 DRAMpower is a trace-based DRAM simulator, considering both the DRAM core power and the interface power.  
 DRAMpower is based on ***[TN‑40‑07: “Calculating Memory Power for DDR4 SDRAM”](https://www.mouser.com/pdfDocs/tn4007_ddr4_power_calculation.pdf?srsltid=AfmBOop4ORXwCwigcSsRLG93RlsHfWM2eV5EJg8Ywips-wEnosf8Fj8j)*** and ***JEDEC’s DDR4 standard (JESD79‑4)***.  
@@ -192,7 +192,7 @@ $`\text{ACT_BG_shared_energy_per_cycle} = VDD * I_{rho} * nDevice * tCK`$
 $`\text{ACT_BG_star_energy_per_cycle} = VDD * (IDD3N-I_{rho}) / B * tCK`$  
 $`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N) / B * tCK`$  
 
-### 5.4 Ramulator2 results
+### 5.5 Ramulator2 power calculation
 
 Ramulator2 is also a trace-based DRAM simulator.  
 Ramulator2 provides only DDR4/DDR5 IDD specifications for the built-in power calculator.  
@@ -208,7 +208,7 @@ $`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$
   
 Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access commands.
 
-### 5.5 IDD & Timing specifications
+### 5.6 IDD specifications
 
 | Source | Ramulator2  | 
 | ---    | ---         |
@@ -228,26 +228,7 @@ Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access co
 | IPP4W  | 3 mA        |
 | IPP5B  | 48 mA       |
 
-| Source                        | Ramulator2  | 
-| ---                           | ---         |
-| MEM                           | DDR4_8Gb_x8 |
-| Spec                          | 2400R       |
-| CLK (ns)                      | 0.833       |
-| nRS                           | 16          |
-| nCCD                          | 16          |
-| nCL                           | 4           |
-| nRAS                          | 39          |
-| nRP                           | 16          |
-| nRFC                          | 433         |
-| nREFI                         | 9364        |
-| READ energy (pJ/b)            | 5.62275     |
-| Write energy (pJ/b)           | 5.62275     |
-| avg. ACT energy (pJ/b)        | 0.75973516  |
-| avg. PRE energy (pJ/b)        | 0.62475     |
-| avg REF energy (pJ/b)         | 0.619968    |
-| Act RD background (pJ/cycle)  | 13.798      |
-| Act WR background (pJ/cycle)  | 48 mA       |
-| Idle background (pJ/cycle)    | 3 mA        |
+### 5.7 DRAM command timing
 
 Note that each of Read/Write commands takes 4 cycles (nBL) for 8 burst lengths (8b x 8 = 64b access).
 
@@ -271,3 +252,26 @@ Activated cycles are accumulated by total RAS time.
 | MEM | Spec | CLK (ns) | nRCD | nCL | nCCD | nRAS | nRP | nRFC | nREFI | Read (pJ/b) | Write (pJ/b) | Avg. Act (pJ/b) | Avg. Pre (pJ/b) | Avg. REF (pJ/b) | Act+Idle Background (RD, pJ/b) | Act+Idle Background (WR, pJ/b) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | DDR4_8Gb_x8 | 2400R | 0.833 | 16 | 16 | 4 | 39 | 16 | 433 | 9364 | 5.62275 | 5.62275 | 0.75973516 | 0.62475 | 0.619968 | 13.798 | 19.777 |
+
+### 5.8 DRAM energy results
+
+| Source                        | Ramulator2  | 
+| ---                           | ---         |
+| MEM                           | DDR4_8Gb_x8 |
+| Spec                          | 2400R       |
+| CLK (ns)                      | 0.833       |
+| nRS                           | 16          |
+| nCCD                          | 16          |
+| nCL                           | 4           |
+| nRAS                          | 39          |
+| nRP                           | 16          |
+| nRFC                          | 433         |
+| nREFI                         | 9364        |
+| READ energy (pJ/b)            | 5.62275     |
+| Write energy (pJ/b)           | 5.62275     |
+| avg. ACT energy (pJ/b)        | 0.75973516  |
+| avg. PRE energy (pJ/b)        | 0.62475     |
+| avg REF energy (pJ/b)         | 0.619968    |
+| Act RD background (pJ/cycle)  | 13.798      |
+| Act WR background (pJ/cycle)  | 48 mA       |
+| Idle background (pJ/cycle)    | 3 mA        |
