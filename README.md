@@ -160,8 +160,8 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 ### 5.3 DRAMpower results
 
-$`\text{ACT_energy_per_cmd} = VDD *`$ 
-$`\text{ACT_energy_per_cmd} = VDD *`$ 
+$`\text{ACT_energy_per_cmd} = VDD *`$  
+$`\text{ACT_energy_per_cmd} = VDD *`$  
 
 ### 5.4 Ramulator results
 
