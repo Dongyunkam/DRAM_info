@@ -160,11 +160,11 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 ### 5.3 DRAMpower results
 
-$`\text{ACT_energy_per_cmd} = tRAS`$  
+$`\text{ACT_energy_per_cmd} = VDD * (I_{\theta}-I1)tRAS`$  
 $`\text{PRE_energy_per_cmd} = VDD * (I_{beta} - IDD2N) * tRP`$  
-$`\text{READ_energy_per_cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * nBL * tCK`$  
-$`\text{WRITE_energy_per_cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * nBL * tCK`$  
-$`\text{REF_energy_per_cmd} = (VDD * IDD5B + VPP * IPP5B) * tRFC`$  
+$`\text{READ_energy_per_cmd} = VDD * (IDD4R-IDD3N) * BurstLength / DateRate * tCK`$  
+$`\text{WRITE_energy_per_cmd} = VDD * (IDD4W-IDD3N) * BurstLength / DateRate * tCK`$  
+$`\text{REF_ab_energy_per_cmd} = VDD * (IDD5B-IDD3N) * BL / DR tRFC`$  
 $`\text{ACT_BG_energy_per_cycle} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
 $`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$  
 
