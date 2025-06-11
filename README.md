@@ -286,7 +286,7 @@ Idle cycles also includes cycles for ACT cmd -> PRE cmd (nRP).
 #### Background energy calculation (ex. Ramulator2):  
 (READ) Activation Background energy = Total read bit / 256 * 43 * 61.2255 (pJ)  
 (WRITE) Activation Background energy = Total write bit / 256 * 58 * 61.2255 (pJ)  
-CORE total latency = CORE total cycle * CORE clock (ns)  
+CORE total latency = CORE total cycles * CORE clock (ns)  
 MEM total latency = CORE total latency  
 MEM total cycles = MEM total latency / 0.833  
 MEM idle cycles = MEM total cycles - (Total read bit / 256 * 43 + Total write bit / 256 * 58)  
