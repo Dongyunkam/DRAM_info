@@ -188,7 +188,7 @@ $`\text{PRE energy per cmd} = VDD * (I_{beta} - IDD2N) * tRP`$
 $`\text{READ energy per cmd} = VDD * (IDD4R-IDD3N) * BurstLength / DateRate * tCK`$  
 $`\text{WRITE energy per cmd} = VDD * (IDD4W-IDD3N) * BurstLength / DateRate * tCK`$  
 $`\text{REF ab energy per cmd} = VDD * (IDD5B-IDD3N) / nBANK * tRFC`$  
-$`\text{ACT BG shared energy per_cycle} = VDD * I_{rho} * nDevice * tCK`$  
+$`\text{ACT BG shared energy per cycle} = VDD * I_{rho} * nDevice * tCK`$  
 $`\text{ACT BG star energy per cycle} = VDD * (IDD3N-I_{rho}) / B * tCK`$  
 $`\text{PRE BG energy per cycle} = (VDD * IDD2N) / B * tCK`$  
 
