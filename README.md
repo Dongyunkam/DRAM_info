@@ -227,6 +227,7 @@ $`\text{PRE BG energy per cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$
 | IPP4W  | 3 mA        |
 | IPP5B  | 48 mA       |
 
+
 ### 5.7 DRAM command timing
 
 Each of Read/Write commands is used for a burst access.
@@ -245,9 +246,6 @@ For example, for 8 burst lengths, each of Read/Write commands takes 4 cycles (8b
 **Refresh Cycle (RFC)**: Time for performing the refresh command.  
 **Refresh time Interval (REFI)**
 
-| MEM | Spec | CLK (ns) | nRCD | nCL | nCCD | nRAS | nRP | nRFC | nREFI | Read (pJ/b) | Write (pJ/b) | Avg. Act (pJ/b) | Avg. Pre (pJ/b) | Avg. REF (pJ/b) | Act+Idle Background (RD, pJ/b) | Act+Idle Background (WR, pJ/b) |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| DDR4_8Gb_x8 | 2400R | 0.833 | 16 | 16 | 4 | 39 | 16 | 433 | 9364 | 5.62275 | 5.62275 | 0.75973516 | 0.62475 | 0.619968 | 13.798 | 19.777 |
 
 ### 5.8 DRAM energy results
 
@@ -285,7 +283,7 @@ Idle cycles also includes cycles for ACT cmd -> PRE cmd (nRP).
 | Act background (pJ/cycle)     | 61.2255     |
 | Idle background (pJ/cycle)    | 56.2275     |
 
-#### Background 계산법 (ex. Ramulator2):  
+#### Background energy calculation (ex. Ramulator2):  
 (READ) Activation Background energy = Total read bit / 256 * 43 * 61.2255 (pJ)  
 (WRITE) Activation Background energy = Total write bit / 256 * 58 * 61.2255 (pJ)  
 CORE total latency = CORE total cycle * CORE clock (ns)  
