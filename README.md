@@ -177,6 +177,8 @@ $`\text{PRE_BG_powerdown_power} = (VDD * IDD2P + VPP * IPP3N) * tCK`$
 ### 5.3 DRAMpower results
 
 DRAMpower is a trace-based DRAM simulator, considering both the DRAM core power and the interface power.  
+DRAMpower is based on ***[TN‑40‑07: “Calculating Memory Power for DDR4 SDRAM”](https://www.mouser.com/pdfDocs/tn4007_ddr4_power_calculation.pdf?srsltid=AfmBOop4ORXwCwigcSsRLG93RlsHfWM2eV5EJg8Ywips-wEnosf8Fj8j)*** and ***JEDEC’s DDR4 standard (JESD79‑4)***.  
+DRAMpower provides DDR4/DDR5/LPDDR4/LPDDR5 IDD specifications.
 
 $`I_{rho} = rho * (IDD3N-IDD2N) + IDD2N`$  
 $`I_{\theta} = (IDD0 * (tRP + tRAS) - I_{beta} * tRP) / tRAS`$  
@@ -192,7 +194,9 @@ $`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N) / B * tCK`$
 
 ### 5.4 Ramulator2 results
 
-Ramulator is also a trace-based DRAM simulator.  
+Ramulator2 is also a trace-based DRAM simulator.  
+Ramulator2 provides only DDR4/DDR5 IDD specifications for the built-in power calculator.  
+For LPDDR and HBM power/energy estimation, you need to get their IDD specifications or you have to use another tool like DRAMpower.  
   
 $`\text{ACT_energy_per_cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
 $`\text{PRE_energy_per_cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
@@ -204,7 +208,27 @@ $`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$
   
 Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access commands.
 
-The Ramulator uses the following current/voltage for DDR4.
+### 5.5 IDD & Timing specifications
+
+| Source | Ramulator   | 
+| ---    | ---         |
+| Type   | DDR4_8Gb_x8 |
+| VDD    | 1.2V        |
+| IDD0   | 60 mA       |
+| IDD2N  | 50 mA       |
+| IDD3N  | 55 mA       |
+| IDD4R  | 145 mA      |
+| IDD4W  | 145 mA      |
+| IDD5B  | 362 mA      |
+| VPP    | 2.5 V       |
+| IPP0   | 3 mA        |
+| IPP2N  | 3 mA        |
+| IPP3N  | 3 mA        |
+| IPP4R  | 3 mA        |
+| IPP4W  | 3 mA        |
+| IPP5B  | 48 mA       |
+
+The Ramulator2 uses the following current/voltage for DDR4.
 ```console
 VDD:    1.2 V
 IDD0:   60 mA
