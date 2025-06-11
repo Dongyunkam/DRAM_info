@@ -160,13 +160,26 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 ### 5.3 DRAMpower results
 
-$`\text{ACT_energy_per_cmd} = VDD *`$  
-$`\text{ACT_energy_per_cmd} = VDD *`$  
+$`\text{ACT_energy_per_cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
+$`\text{PRE_energy_per_cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
+$`\text{READ_energy_per_cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * nBL * tCK`$  
+$`\text{WRITE_energy_per_cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * nBL * tCK`$  
+$`\text{REF_energy_per_cmd} = (VDD * IDD5B + VPP * IPP5B) * tRFC`$  
+$`\text{ACT_BG_energy_per_cycle} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
+$`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$  
 
 ### 5.4 Ramulator results
 
-Ramulator is a trace-based DRAM simulator.
-
+Ramulator is a trace-based DRAM simulator.  
+  
+$`\text{ACT_energy_per_cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
+$`\text{PRE_energy_per_cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
+$`\text{READ_energy_per_cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * nBL * tCK`$  
+$`\text{WRITE_energy_per_cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * nBL * tCK`$  
+$`\text{REF_energy_per_cmd} = (VDD * IDD5B + VPP * IPP5B) * tRFC`$  
+$`\text{ACT_BG_energy_per_cycle} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
+$`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$  
+  
 Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access commands.
 
 The Ramulator uses the following current/voltage for DDR4.
