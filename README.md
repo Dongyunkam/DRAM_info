@@ -210,9 +210,9 @@ Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access co
 
 ### 5.5 IDD & Timing specifications
 
-| Source | Ramulator   | 
+| Source | Ramulator2  | 
 | ---    | ---         |
-| Type   | DDR4_8Gb_x8 |
+| MEM    | DDR4_8Gb_x8 |
 | VDD    | 1.2V        |
 | IDD0   | 60 mA       |
 | IDD2N  | 50 mA       |
@@ -228,23 +228,27 @@ Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access co
 | IPP4W  | 3 mA        |
 | IPP5B  | 48 mA       |
 
-The Ramulator2 uses the following current/voltage for DDR4.
-```console
-VDD:    1.2 V
-IDD0:   60 mA
-IDD2N:  50 mA
-IDD3N:  55 mA
-IDD4R:  145 mA
-IDD4W:  145 mA
-IDD5B:  362 mA
-VPP:    2.5 V
-IPP0:   3 mA
-IPP2N:  3 mA
-IPP3N:  3 mA
-IPP4R:  3 mA
-IPP4W:  3 mA
-IPP5B:  48 mA
-```
+| Source                        | Ramulator2  | 
+| ---                           | ---         |
+| MEM                           | DDR4_8Gb_x8 |
+| Spec                          | 2400R       |
+| CLK (ns)                      | 0.833       |
+| nRS                           | 16          |
+| nCCD                          | 16          |
+| nCL                           | 4           |
+| nRAS                          | 39          |
+| nRP                           | 16          |
+| nRFC                          | 433         |
+| nREFI                         | 9364        |
+| READ energy (pJ/b)            | 5.62275     |
+| Write energy (pJ/b)           | 5.62275     |
+| avg. ACT energy (pJ/b)        | 0.75973516  |
+| avg. PRE energy (pJ/b)        | 0.62475     |
+| avg REF energy (pJ/b)         | 0.619968    |
+| Act RD background (pJ/cycle)  | 13.798      |
+| Act WR background (pJ/cycle)  | 48 mA       |
+| Idle background (pJ/cycle)    | 3 mA        |
+
 Note that each of Read/Write commands takes 4 cycles (nBL) for 8 burst lengths (8b x 8 = 64b access).
 
 <center><img src="./figures/row-access time.png" width="100%" height="100%"></center>
