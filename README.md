@@ -206,7 +206,6 @@ $`\text{REF_energy_per_cmd} = (VDD * IDD5B + VPP * IPP5B) * tRFC`$
 $`\text{ACT_BG_energy_per_cycle} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
 $`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$  
   
-Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access commands.
 
 ### 5.6 IDD specifications
 
@@ -230,7 +229,8 @@ Note that An Activate command would be valid for (nRAS/nBP ~ 9) column access co
 
 ### 5.7 DRAM command timing
 
-Note that each of Read/Write commands takes 4 cycles (nBL) for 8 burst lengths (8b x 8 = 64b access).
+Each of Read/Write commands is used for a burst access.
+For example, for 8 burst lengths, each of Read/Write commands takes 4 cycles (8b x 8 = 64b access).
 
 <center><img src="./figures/row-access time.png" width="100%" height="100%"></center>
 
@@ -245,33 +245,41 @@ Note that each of Read/Write commands takes 4 cycles (nBL) for 8 burst lengths (
 **Refresh Cycle (RFC)**: Time for performing the refresh command.  
 **Refresh time Interval (REFI)**
 
-Note that I consider "open row for (tRAS-tRCD)" and "only max(tCCD,tBURST) for stream commands" ([ISCA'23](https://dl.acm.org/doi/pdf/10.1145/3579371.3589101), [ISCA'12](https://ieeexplore.ieee.org/document/6237032), and [Blog Post](https://ryotta-205.tistory.com/86)).  
-But, in fact, Ramulator uses four stream column access commands for one active commands.  
-Activated cycles are accumulated by total RAS time.  
-
 | MEM | Spec | CLK (ns) | nRCD | nCL | nCCD | nRAS | nRP | nRFC | nREFI | Read (pJ/b) | Write (pJ/b) | Avg. Act (pJ/b) | Avg. Pre (pJ/b) | Avg. REF (pJ/b) | Act+Idle Background (RD, pJ/b) | Act+Idle Background (WR, pJ/b) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | DDR4_8Gb_x8 | 2400R | 0.833 | 16 | 16 | 4 | 39 | 16 | 433 | 9364 | 5.62275 | 5.62275 | 0.75973516 | 0.62475 | 0.619968 | 13.798 | 19.777 |
 
 ### 5.8 DRAM energy results
 
+Based on Ramulator2, I consider "open row for (tRAS-tRCD)" and "only max(tCCD,tBURST) for stream commands" ([ISCA'23](https://dl.acm.org/doi/pdf/10.1145/3579371.3589101), [ISCA'12](https://ieeexplore.ieee.org/document/6237032), and [Blog Post](https://ryotta-205.tistory.com/86)).  
+But, in fact, Ramulator2 uses four stream column access commands for one active commands.  
+Activated cycles are accumulated by total RAS time.  
+Idle cycles also includes cycles for ACT cmd -> PRE cmd (nRP).  
+
 | Source                        | Ramulator2  | 
 | ---                           | ---         |
 | MEM                           | DDR4_8Gb_x8 |
 | Spec                          | 2400R       |
 | CLK (ns)                      | 0.833       |
+| Access type (Trace)           | Stream      |
+| nBL                           | 8 (4 cycles)|
 | nRS                           | 16          |
+| nRCD                          | 16          |
 | nCCD                          | 16          |
 | nCL                           | 4           |
+| nRC                           | 55          |
 | nRAS                          | 39          |
 | nRP                           | 16          |
 | nRFC                          | 433         |
 | nREFI                         | 9364        |
+| Sim RD ACT->PRE cycles (# cmd)| 43 (4 RD)   |
+| Sim RD ACT->ACT cycles (# cmd)| 59 (4 RD)   |
+| Sim WR ACT->PRE cycles (# cmd)| 58 (4 WR)   |
+| Sim WR ACT->ACT cycles (# cmd)| 84 (4 WR)   |
 | READ energy (pJ/b)            | 5.62275     |
 | Write energy (pJ/b)           | 5.62275     |
 | avg. ACT energy (pJ/b)        | 0.75973516  |
 | avg. PRE energy (pJ/b)        | 0.62475     |
-| avg REF energy (pJ/b)         | 0.619968    |
-| Act RD background (pJ/cycle)  | 13.798      |
-| Act WR background (pJ/cycle)  | 48 mA       |
-| Idle background (pJ/cycle)    | 3 mA        |
+| avg. REF energy (pJ/b)        | 0.619968    |
+| Act background (pJ/cycle)     | 61.2255     |
+| Idle background (pJ/cycle)    | 56.2275     |
