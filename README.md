@@ -164,14 +164,14 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 MICRON provides EXCEL files to calculate dram power, which is used for the [paper](https://stacks.stanford.edu/file/yp843xn4828/Heonjae_Thesis-augmented.pdf).  
 
 $`\text{ACT energy per cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
-$`PRE energy per cmd = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
-$`READ energy per cmd = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * (nBL/8) * tCK`$  
-$`WRITE energy per cmd = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * (nBL/8) * tCK`$  
-$`REF energy_per cmd = (VDD * (IDD5B-IDD3N)  + VPP * (IPP5B-IPP3N) / tREFI) * tRFC`$  
-$`ACT BG powerdown power = (VDD * IDD3P + VPP * IPP3N) * tCK`$  
-$`ACT BG standby power = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
-$`IDLE BG standby power = (VDD * IDD2N + VPP * IPP3N) * tCK`$  
-$`PRE BG powerdown power = (VDD * IDD2P + VPP * IPP3N) * tCK`$   
+$`\text{PRE energy per cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
+$`\text{READ energy per cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * (nBL/8) * tCK`$  
+$`\text{WRITE energy per cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * (nBL/8) * tCK`$  
+$`\text{REF energy_per cmd} = (VDD * (IDD5B-IDD3N)  + VPP * (IPP5B-IPP3N) / tREFI) * tRFC`$  
+$`\text{ACT BG powerdown power} = (VDD * IDD3P + VPP * IPP3N) * tCK`$  
+$`\text{ACT BG standby power} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
+$`\text{IDLE BG standby power} = (VDD * IDD2N + VPP * IPP3N) * tCK`$  
+$`\text{PRE BG powerdown power} = (VDD * IDD2P + VPP * IPP3N) * tCK`$   
 
 
 ### 5.4 DRAMpower power calculation
@@ -183,14 +183,14 @@ DRAMpower provides DDR4/DDR5/LPDDR4/LPDDR5 IDD specifications.
 $`I_{rho} = rho * (IDD3N-IDD2N) + IDD2N`$  
 $`I_{\theta} = (IDD0 * (tRP + tRAS) - I_{beta} * tRP) / tRAS`$  
 $`I1 = (IDD3N + (nBANK - 1) * (rho * (IDD3N-IDD2N) + IDD2N)) / nBANK`$  
-$`ACT energy per cmd = VDD * (I_{\theta}-I1) * tRAS`$  
-$`PRE energy per cmd = VDD * (I_{beta} - IDD2N) * tRP`$  
-$`READ energy per cmd = VDD * (IDD4R-IDD3N) * BurstLength / DateRate * tCK`$  
-$`WRITE energy per cmd = VDD * (IDD4W-IDD3N) * BurstLength / DateRate * tCK`$  
-$`REF ab energy per cmd = VDD * (IDD5B-IDD3N) / nBANK * tRFC`$  
-$`ACT BG shared energy per_cycle = VDD * I_{rho} * nDevice * tCK`$  
-$`ACT BG star energy per cycle = VDD * (IDD3N-I_{rho}) / B * tCK`$  
-$`PRE BG energy per cycle = (VDD * IDD2N) / B * tCK`$  
+$`\text{ACT energy per cmd} = VDD * (I_{\theta}-I1) * tRAS`$  
+$`\text{PRE energy per cmd} = VDD * (I_{beta} - IDD2N) * tRP`$  
+$`\text{READ energy per cmd} = VDD * (IDD4R-IDD3N) * BurstLength / DateRate * tCK`$  
+$`\text{WRITE energy per cmd} = VDD * (IDD4W-IDD3N) * BurstLength / DateRate * tCK`$  
+$`\text{REF ab energy per cmd} = VDD * (IDD5B-IDD3N) / nBANK * tRFC`$  
+$`\text{ACT BG shared energy per_cycle} = VDD * I_{rho} * nDevice * tCK`$  
+$`\text{ACT BG star energy per cycle} = VDD * (IDD3N-I_{rho}) / B * tCK`$  
+$`\text{PRE BG energy per cycle} = (VDD * IDD2N) / B * tCK`$  
 
 ### 5.5 Ramulator2 power calculation
 
@@ -198,13 +198,13 @@ Ramulator2 is also a trace-based DRAM simulator.
 Ramulator2 provides only DDR4/DDR5 IDD specifications for the built-in power calculator.  
 For LPDDR and HBM power/energy estimation, you need to get their IDD specifications or you have to use another tool like DRAMpower.  
   
-$`\text{ACT_energy_per_cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
-$`\text{PRE_energy_per_cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
-$`\text{READ_energy_per_cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * nBL * tCK`$  
-$`\text{WRITE_energy_per_cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * nBL * tCK`$  
-$`\text{REF_energy_per_cmd} = (VDD * IDD5B + VPP * IPP5B) * tRFC`$  
-$`\text{ACT_BG_energy_per_cycle} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
-$`\text{PRE_BG_energy_per_cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$  
+$`\text{ACT energy per cmd} = (VDD * (IDD0-IDD3N) + VPP * (IPP0-IPP3N)) * tRAS`$  
+$`\text{PRE energy per cmd} = (VDD * (IDD0-IDD2N) + VPP * (IPP0-IPP2N)) * tRP`$  
+$`\text{READ energy per cmd} = (VDD * (IDD4R-IDD3N) + VPP * (IPP4R-IPP3N)) * nBL * tCK`$  
+$`\text{WRITE energy per cmd} = (VDD * (IDD4W-IDD3N) + VPP * (IPP4W-IPP3N)) * nBL * tCK`$  
+$`\text{REF energy per cmd} = (VDD * IDD5B + VPP * IPP5B) * tRFC`$  
+$`\text{ACT BG energy per cycle} = (VDD * IDD3N + VPP * IPP3N) * tCK`$  
+$`\text{PRE BG energy per cycle} = (VDD * IDD2N + VPP * IPP2N) * tCK`$  
   
 
 ### 5.6 IDD specifications
