@@ -160,9 +160,9 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 ### 5.3 DRAMpower results
 
-$`\text{I_{rho}} = rho * (IDD3N-IDD2N) + IDD2N`$  
-$`\text{I_{\theta}} = (IDD0 * (tRP + tRAS) - I_{beta} * tRP) / tRAS`$  
-$`\text{I1} = (IDD3N + (nBANK - 1) * (rho * (IDD3N-IDD2N) + IDD2N)) / nBANK`$  
+$`I_{rho} = rho * (IDD3N-IDD2N) + IDD2N`$  
+$`I_{\theta} = (IDD0 * (tRP + tRAS) - I_{beta} * tRP) / tRAS`$  
+$`I1 = (IDD3N + (nBANK - 1) * (rho * (IDD3N-IDD2N) + IDD2N)) / nBANK`$  
 $`\text{ACT_energy_per_cmd} = VDD * (I_{\theta}-I1) * tRAS`$  
 $`\text{PRE_energy_per_cmd} = VDD * (I_{beta} - IDD2N) * tRP`$  
 $`\text{READ_energy_per_cmd} = VDD * (IDD4R-IDD3N) * BurstLength / DateRate * tCK`$  
