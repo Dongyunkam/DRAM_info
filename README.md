@@ -262,7 +262,7 @@ Idle cycles also includes cycles for ACT cmd -> PRE cmd (nRP).
 | Spec                          | 2400R       |
 | CLK (ns)                      | 0.833       |
 | Access type (Trace)           | Stream      |
-| Bit transfer per cmd          | DQ x BL = 64|
+| Transmitted bits per cmd      | DQ x BL = 64|
 | nBL                           | 8 (4 cycles)|
 | nRS                           | 16          |
 | nRCD                          | 16          |
