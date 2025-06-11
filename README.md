@@ -160,8 +160,7 @@ Note that CACTI is limited by 1 GB (8Gb) !!!!
 
 ### 5.3 DRAMpower results
 
-| Ref | MEM type | DRAM type | Cache type | Cache level | Size (B) | Tech (nm) | Block size (B) | In/Out width (b) | Dynamic read energy (pJ/b) | Dynamic write energy (pJ/b) | Leakage power per bank (mW) | Area (mm^2) |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+Act_energy = VDD * 
 
 ### 5.4 Ramulator results
 
