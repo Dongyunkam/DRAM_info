@@ -284,10 +284,16 @@ Idle cycles also includes cycles for ACT cmd -> PRE cmd (nRP).
 | Idle background (pJ/cycle)    | 56.2275     |
 
 #### Background energy calculation (ex. Ramulator2):  
-(READ) Activation Background energy = Total read bit / 256 * 43 * 61.2255 (pJ)  
-(WRITE) Activation Background energy = Total write bit / 256 * 58 * 61.2255 (pJ)  
+The single DRAM chip has 256b/(43*0.833ns) = 7.14 Gb/s as the effective bandwidth.  
+When considering eight chips in a DIMM, we get about 57 Gb/s as the effective bandwidth. ($`N = 8`$ is very common.)  
+  
+If we denote the number of chip as $`N`$, we have to set a proper $'N'$ for the required bandwidth.  
+And we can calculate DRAM background energy consumption as follows:  
+
+(READ) Activation Background energy = Total read bit / (256 * $'N'$)  * 43 * 61.2255 * $'N'$ (pJ)  
+(WRITE) Activation Background energy = Total write bit / (256 * $'N'$) * 58 * 61.2255 * $'N'$ (pJ)  
 Accelerator total latency = Accelerator total cycles * Accelerator clock (ns)  
 MEM total latency = Accelerator total latency  
 MEM total cycles = MEM total latency / 0.833  
-MEM idle cycles = MEM total cycles - (Total read bit / 256 * 43 + Total write bit / 256 * 58)  
-idle Background energy = MEM idle cycles * 56.2275 (pJ)  
+MEM idle cycles = MEM total cycles - (Total read bit / (256 * $'N'$) * 43 + Total write bit / (256 * $'N'$) * 58)  
+idle Background energy = MEM idle cycles * 56.2275 * $'N'$ (pJ)  
