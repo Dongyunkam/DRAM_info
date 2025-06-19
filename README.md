@@ -284,7 +284,7 @@ Idle cycles also includes cycles for ACT cmd -> PRE cmd (nRP).
 | Idle background (pJ/cycle)    | 56.2275     |
 
 #### Background energy calculation (ex. Ramulator2):  
-The single DRAM chip has 256b/(43*0.833ns) = 7.14 Gb/s as the effective bandwidth.  
+The single DRAM chip has the effective bandwidth 256b/(43*0.833ns) = 7.14 Gb/s.  
 When considering eight chips in a DIMM, we get about 57 Gb/s as the effective bandwidth. ($`N = 8`$ is very common.)  
   
 If we denote the number of chip as $`N`$, we have to set a proper $'N'$ for the required bandwidth.  
